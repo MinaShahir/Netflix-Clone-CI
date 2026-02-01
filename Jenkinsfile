@@ -101,6 +101,7 @@ pipeline {
                 docker run -d --name netflix -p 8081:5000 mahmoudtots/netflix:latest
                 '''
             }
+        }
         } 
         post {
         always {
@@ -117,6 +118,5 @@ pipeline {
                  subject: "Failed: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Something went wrong! The Netflix Clone pipeline failed. Review the logs here: ${env.BUILD_URL}"
         }
-    }
-    }
+    }  
 }
