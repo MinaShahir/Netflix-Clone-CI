@@ -7,14 +7,15 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   // @ts-ignore
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['src/CustomClassNameSetup.ts'], // اختياري إذا كان عندك إعدادات مسبقة
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'lcov'], // هذا السطر هو الأهم لإنتاج ملف lcov.info
-      include: ['src/**/*'], // خليه يقرأ كل اللي جوه src
-      all: true, // يحسب التغطية لكل الملفات حتى اللي مش معمولة ليها تست
+  globals: true,
+  environment: 'jsdom',
+  setupFiles: ['src/CustomClassNameSetup.ts'],
+  coverage: {
+    provider: 'v8',
+    reporter: ['text', 'lcov'],
+    all: true, // مهم جداً ليشمل كل الملفات
+    include: ['src/**/*.ts', 'src/**/*.tsx'],
+    exclude: ['node_modules/', 'src/vite-env.d.ts'],
     },
   },
 })
