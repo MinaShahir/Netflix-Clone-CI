@@ -129,9 +129,32 @@ pipeline {
         }
         } 
     // Notifications with email and Slack
-        post {
+       post {
         always {
-            // مسح ملفات العمل بعد الانتهاء لتوفير المساحة
+            script {
+                // 1. تحديد الرموز التعبيرية بناءً على النتيجة
+                def statusEmoji = (currentBuild.currentResult == 'SUCCESS') ? "✅" : "❌"
+                
+                // 2. تجهيز البيانات (Payload)
+                def payload = """
+                {
+                    "project": "${env.JOB_NAME}",
+                    "build_no": "${env.BUILD_NUMBER}",
+                    "result": "${currentBuild.currentResult}",
+                    "emoji": "${statusEmoji}",
+                    "url": "${env.BUILD_URL}",
+                    "author": "Mahmoud Yousef"
+                }
+                """
+                
+                // 3. إرسال البيانات لـ n8n (استخدم الـ Test URL في البداية)
+                sh """
+                curl -X POST -H "Content-Type: application/json" \
+                -d '${payload}' \
+                http://localhost:5678/webhook-test/ci-jenkins-alert
+                """
+            }
+            // تنظيف مساحة العمل
             cleanWs()
         }
         success {
@@ -140,7 +163,7 @@ pipeline {
                  body: "Great job! The Netflix Clone pipeline finished successfully. Check it here: ${env.BUILD_URL}"
             slackSend channel: '#ci',
                      color: 'good',
-                      message: "❌❌❌The build was successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Check it here: ${env.BUILD_URL}"
+                      message: "${statusEmoji}${statusEmoji}${statusEmoji} The build was successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Check it here: ${env.BUILD_URL}"
         }
         failure {
             mail to: 'mahmoudyousef055@gmail.com',
@@ -148,7 +171,7 @@ pipeline {
                  body: "Something went wrong! The Netflix Clone pipeline failed. Review the logs here: ${env.BUILD_URL}"
             slackSend channel: '#ci',
                       color: 'danger',
-                     message: "❌❌❌The build failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Review the logs here: ${env.BUILD_URL}"
+                     message: "${statusEmoji}${statusEmoji}${statusEmoji}The build failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Review the logs here: ${env.BUILD_URL}"
         }
     }
 }
