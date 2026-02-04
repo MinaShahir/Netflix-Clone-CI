@@ -138,7 +138,7 @@ pipeline {
             mail to: 'mahmoudyousef055@gmail.com',
                  subject: "Success: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Great job! The Netflix Clone pipeline finished successfully. Check it here: ${env.BUILD_URL}"
-            slackSend channel: '#deployments',
+            slackSend channel: '#ci',
                      color: 'good',
                       message: "❌❌❌The build was successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Check it here: ${env.BUILD_URL}"
         }
@@ -146,7 +146,7 @@ pipeline {
             mail to: 'mahmoudyousef055@gmail.com',
                  subject: "Failed: Pipeline ${currentBuild.fullDisplayName}",
                  body: "Something went wrong! The Netflix Clone pipeline failed. Review the logs here: ${env.BUILD_URL}"
-            slackSend channel: '#deployments',
+            slackSend channel: '#ci',
                       color: 'danger',
                      message: "❌❌❌The build failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Review the logs here: ${env.BUILD_URL}"
         }
