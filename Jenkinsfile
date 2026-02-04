@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    تعريف الأدوات المستخدمة في البايبلاين
+   // تعريف الأدوات المستخدمة في البايبلاين
     tools {
         nodejs 'NodeJS-18'
     }
@@ -11,8 +11,8 @@ pipeline {
        DOCKER_REGISTRY_USER = 'mahmoudtots'
        IMAGE_NAME = 'netflix-clone'
    }
-    مراحل البايبلاين
-    استدعاء الكود من المستودع وتنظيف مساحة العمل
+   // مراحل البايبلاين
+   // استدعاء الكود من المستودع وتنظيف مساحة العمل
      stages {
         stage('Clean & Checkout') {
             steps {
