@@ -157,21 +157,21 @@ pipeline {
             // تنظيف مساحة العمل
             cleanWs()
         }
-        success {
-            mail to: 'mahmoudyousef055@gmail.com',
-                 subject: "Success: Pipeline ${currentBuild.fullDisplayName}",
-                 body: "Great job! The Netflix Clone pipeline finished successfully. Check it here: ${env.BUILD_URL}"
-            // slackSend channel: '#ci',
-            //          color: 'good',
-            //           message: "${statusEmoji}${statusEmoji}${statusEmoji} The build was successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Check it here: ${env.BUILD_URL}"
-        }
-        failure {
-            mail to: 'mahmoudyousef055@gmail.com',
-                 subject: "Failed: Pipeline ${currentBuild.fullDisplayName}",
-                 body: "Something went wrong! The Netflix Clone pipeline failed. Review the logs here: ${env.BUILD_URL}"
-        //     slackSend channel: '#ci',
-        //               color: 'danger',
-        //              message: "${statusEmoji}${statusEmoji}${statusEmoji}The build failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Review the logs here: ${env.BUILD_URL}"
-        }
+        // success {
+        //     mail to: 'mahmoudyousef055@gmail.com',
+        //          subject: "Success: Pipeline ${currentBuild.fullDisplayName}",
+        //          body: "Great job! The Netflix Clone pipeline finished successfully. Check it here: ${env.BUILD_URL}"
+        //     // slackSend channel: '#ci',
+        //     //          color: 'good',
+        //     //           message: "${statusEmoji}${statusEmoji}${statusEmoji} The build was successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Check it here: ${env.BUILD_URL}"
+        // }
+        // failure {
+        //     mail to: 'mahmoudyousef055@gmail.com',
+        //          subject: "Failed: Pipeline ${currentBuild.fullDisplayName}",
+        //          body: "Something went wrong! The Netflix Clone pipeline failed. Review the logs here: ${env.BUILD_URL}"
+        // //     slackSend channel: '#ci',
+        // //               color: 'danger',
+        // //              message: "${statusEmoji}${statusEmoji}${statusEmoji}The build failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] Review the logs here: ${env.BUILD_URL}"
+        // }
     }
 }
