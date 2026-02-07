@@ -119,14 +119,14 @@ pipeline {
             }
         }
     // نشر الحاوية
-        stage('Deploy to Container') {
-            steps {
-                sh """
-                    docker rm -f ${IMAGE_NAME} || true
-                    docker run -d --name ${IMAGE_NAME} -p 8085:5000 ${DOCKER_REGISTRY_USER}/${IMAGE_NAME}:${env.BUILD_NUMBER}
-                """
-            }
-        }
+        // stage('Deploy to Container') {
+        //     steps {
+        //         sh """
+        //             docker rm -f ${IMAGE_NAME} || true
+        //             docker run -d --name ${IMAGE_NAME} -p 8085:5000 ${DOCKER_REGISTRY_USER}/${IMAGE_NAME}:${env.BUILD_NUMBER}
+        //         """
+        //     }
+        // }
           } 
     // Notifications with email and Slack
        post {
@@ -141,6 +141,7 @@ pipeline {
                     "project": "${env.JOB_NAME}",
                     "build_no": "${env.BUILD_NUMBER}",
                     "result": "${currentBuild.currentResult}",
+                    "image": "${DOCKER_REGISTRY_USER}/${IMAGE_NAME}",
                     "emoji": "${statusEmoji}",
                     "url": "${env.BUILD_URL}",
                     "author": "Mahmoud Yousef"
@@ -151,7 +152,7 @@ pipeline {
                 sh """
                 curl -X POST -H "Content-Type: application/json" \
                 -d '${payload}' \
-                http://localhost:5678/webhook/ci-jenkins-alert
+                http://3.82.16.17:5678/webhook/ci-jenkins-alert
                 """
             }
             // تنظيف مساحة العمل
