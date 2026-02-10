@@ -48,9 +48,12 @@ export function Component() {
       sources: [
         {
           // src: videoData?.video,
-          src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+          // src:http://uniontvs.com:80/mshahy23/Ms1234567890/473603
+          src: "http://uniontvs.com:80/movie/mshahy23/Ms1234567890/483411.mp4",
+          type: "video/mp4", // تم التغيير من mpegurl إلى mp4
+          //src: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
           //src: "https://bitmovin-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-          type: "application/x-mpegurl",
+          //type: "application/x-mpegurl",
         },
       ],
     };
@@ -270,5 +273,6 @@ export function Component() {
 }
 
 Component.displayName = "WatchPage";
+
 
 
