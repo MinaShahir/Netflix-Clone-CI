@@ -75,7 +75,7 @@ pipeline {
                 //     dependencyCheck additionalArguments: "--disableYarnAudit --disableNodeAudit --nvdApiKey ${NVD_KEY}",
                 //                     odcInstallation: 'dependency-check'
                 //}
-                dependencyCheck additionalArguments: "--disableYarnAudit --disableNodeAudit --nonInteractive", 
+                dependencyCheck additionalArguments: "--disableYarnAudit --disableNodeAudit -n", 
                 odcInstallation: 'dependency-check'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
