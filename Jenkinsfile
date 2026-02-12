@@ -93,7 +93,7 @@ pipeline {
                         def repoName = "${DOCKER_REGISTRY_USER}/${IMAGE_NAME}"
 
                         // Build Docker image with required build arguments
-                        sh 'docker build --build-arg VITE_APP_API_ENDPOINT_URL=https://api.themoviedb.org/3 --build-arg VITE_APP_TMDB_V3_API_KEY=${TMDB_API_KEY} -t ${repoName}:${imageTag} -t ${repoName}:latest .'
+                        sh "docker build --build-arg VITE_APP_API_ENDPOINT_URL=https://api.themoviedb.org/3 --build-arg VITE_APP_TMDB_V3_API_KEY=${TMDB_API_KEY} -t ${repoName}:${imageTag} -t ${repoName}:latest ."
 
                         // Login to Docker registry and push images
                         sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
@@ -190,7 +190,7 @@ pipeline {
                 sh """
                 curl -X POST -H "Content-Type: application/json" \
                 -d '${payload}' \
-                http://localhost:5678/webhook/ci-jenkins-alert
+                http://54.211.122.201:5678/webhook/ci-jenkins-alert
                 """
             }
 
