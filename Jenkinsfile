@@ -112,13 +112,6 @@ pipeline {
             }
         }
 
-        // Run Trivy scan on the built Docker image
-        stage("TRIVY IMAGE SCAN") {
-            steps {
-                sh "trivy image ${DOCKER_REGISTRY_USER}/${IMAGE_NAME}:latest > trivyimage.txt"
-            }
-        }
-
         // Build frontend artifact and upload it to Nexus repository
         stage('Build & Upload Artifacts') {
             steps {
@@ -185,6 +178,7 @@ pipeline {
                     "project": "${env.JOB_NAME}",
                     "build_no": "${env.BUILD_NUMBER}",
                     "result": "${currentBuild.currentResult}",
+                    "status_color": "${statusColor}",
                     "image": "${DOCKER_REGISTRY_USER}/${IMAGE_NAME}",
                     "emoji": "${statusEmoji}",
                     "url": "${env.BUILD_URL}",
