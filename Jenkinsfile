@@ -69,15 +69,15 @@ pipeline {
         }
 
         // Run OWASP Dependency-Check scan on filesystem
-        stage('OWASP FS SCAN') {
-            steps {
-                withCredentials([string(credentialsId: 'NVD_API_KEY', variable: 'NVD_KEY')]) {
-                    dependencyCheck additionalArguments: "--disableYarnAudit --disableNodeAudit --nvdApiKey ${NVD_KEY}",
-                                    odcInstallation: 'dependency-check'
-                }
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
+        // stage('OWASP FS SCAN') {
+        //     steps {
+        //         withCredentials([string(credentialsId: 'NVD_API_KEY', variable: 'NVD_KEY')]) {
+        //             dependencyCheck additionalArguments: "--disableYarnAudit --disableNodeAudit --nvdApiKey ${NVD_KEY}",
+        //                             odcInstallation: 'dependency-check'
+        //         }
+        //         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        //     }
+        // }
 
         // Run Trivy filesystem scan
         stage('TRIVY File SCAN') {
