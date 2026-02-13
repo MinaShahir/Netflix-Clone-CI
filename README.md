@@ -530,7 +530,7 @@ health status, and resource relationships managed by ArgoCD.
 
 #### Applications Dashboard
 
-![ArgoCD Dashboard](images/argocd.png)
+![ArgoCD Dashboard](images/argocd3.png)
 
 ------------------------------------------------------------------------
 
@@ -927,7 +927,7 @@ Hussein Abdelazim\
 Mahmoud Youssef\
 Mina Shahir\
 Mohamed Fadl\
-Mustafa Alsharaawy\
+Mustafa Alsharaawy
 
 DevOps / Cloud Engineers
 
