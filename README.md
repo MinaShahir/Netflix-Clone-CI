@@ -88,7 +88,6 @@ GitHub Actions was mainly used for infrastructure automation.
 
 ![Notification](images/n8n.jpeg)
 ![AlertSuccess](images/CIsuccessslacknotification.png)
-![Prometheus](images/promeseusapplicationpodslackrule.png)
 
 ### Why ELK Instead of CloudWatch
 
